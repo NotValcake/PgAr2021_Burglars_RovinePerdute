@@ -1,9 +1,17 @@
+import java.util.ArrayList;
+
 public class Graph {
 
-    private final int[][] adjmat;
+    private final ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
 
     public Graph(int v) {
-        this.adjmat = new int[v][v];
+        for (int i = 0; i < v; i++) {
+            this.adjList.add(new ArrayList<>());
+        }
+    }
+
+    public void addVertex(){
+        this.adjList.add(new ArrayList<>());
     }
 
     /**
@@ -12,7 +20,7 @@ public class Graph {
      * @return number of nodes
      */
     public int getVertexNum() {
-        return adjmat.length;
+        return adjList.size();
     }
 
     /**
@@ -21,8 +29,8 @@ public class Graph {
      * @param v index of the wanted node
      * @return the wanted node with all of his edges
      */
-    public int[] getVertex(int v) {
-        return adjmat[v];
+    public ArrayList<Integer> getVertex(int v) {
+        return adjList.get(v);
     }
 
     /**
@@ -32,7 +40,7 @@ public class Graph {
      * @param to   destination node index
      */
     public void addEdge(int from, int to) {
-        adjmat[from][to] = 1;
+        adjList.get(from).add(to);
     }
 
     /**
@@ -43,11 +51,12 @@ public class Graph {
      * @return 1 if the Edge exists
      * @throws IllegalArgumentException if the same node is given as starting and dastination
      */
-    public int getEdge(int from, int to) {
+    public boolean areConnected(int from, int to) {
         if (from == to) {
             throw (new IllegalArgumentException());
         }
-        return adjmat[from][to];
+        return adjList.get(from).contains(to);
     }
+
 }
 

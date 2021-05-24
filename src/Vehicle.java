@@ -1,8 +1,8 @@
 public abstract class Vehicle {
 
-    private Graph map;
+    private MyMap map;
 
-    public Vehicle(Graph map) {
+    public Vehicle(MyMap map) {
         this.map = map;
     }
 
@@ -11,7 +11,7 @@ public abstract class Vehicle {
      *
      * @return a Graph containing the minimum spanning three
      */
-    public abstract Graph getMinimumPaths();
+    public abstract MyMap getMinimumPaths();
 
     /**
      * Finds the quickest path to the "to" destination
@@ -20,5 +20,9 @@ public abstract class Vehicle {
      * @return an array of int containing the list of nodes
      */
     public abstract int[] findQuickestPath(int to);
+
+    public MyMap getMap(){
+        return map;
+    }
 
 }
