@@ -1,3 +1,6 @@
+import java.io.Console;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class MyMap{
@@ -27,6 +30,10 @@ public class MyMap{
                 return s;
         }
         return null;
+    }
+
+    public Collection<Settlement> getNodes(){
+        return this.map.values();
     }
 
 }
