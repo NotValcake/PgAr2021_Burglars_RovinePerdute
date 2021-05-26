@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TreeMap;
 
 public abstract class Vehicle {
@@ -16,24 +17,22 @@ public abstract class Vehicle {
      */
     private MyMap getMinimumPaths() {//TODO finire implementazione Dij
 
-        //boolean[] visited = new boolean[getMap().getNodesNum()]; //array di boolean che contiene i nodi visitati
+        TreeMap<Integer, Settlement> to_be_visited = new TreeMap<>(); //array di boolean che contiene i nodi visitati
         ArrayList<TreeMap<Integer, Double>> nodes = new ArrayList<>();//for each node, the key will hold the previous and the second box will hold their distance
 
         for (int i = 0; i < map.getNodes().size(); i++){
             nodes.add(new TreeMap<>());
+            to_be_visited.put(map.getNode(i).getId(), map.getNode(i));
         }
 
-        for (int i = 0; i < map.getNodes().size(); i++) {
+        int i = 0;
 
-            for (int j = 0; j < map.getNode(i).getConnected().size(); j++) {
-                double min_fuel = getFuel(map.getNode(i).getConnected().get(j), map.getNode(j));
-                if(min_fuel <= nodes.get(i).get(nodes.get(i).firstKey())){
-                    nodes.get(i).clear();
-                    nodes.get(i).put(map.getNode(i).getId(), min_fuel);
-                }
-            }
+        while(!to_be_visited.isEmpty()){
+            Settlement actual_node = to_be_visited.get(to_be_visited.firstKey());
 
+            to_be_visited.remove(actual_node.getId());
         }
+
         return null;
     }
 
