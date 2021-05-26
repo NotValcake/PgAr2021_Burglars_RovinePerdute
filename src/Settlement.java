@@ -20,6 +20,9 @@ public class Settlement {
         this.coords = coords;
     }
 
+
+
+
     public Settlement() {
     }
 
@@ -48,7 +51,7 @@ public class Settlement {
     }
 
     public int getY() {
-        return coords[X];
+        return coords[Y];
     }
 
     public void setY(int y) {
@@ -66,6 +69,11 @@ public class Settlement {
     public void addConnection(Settlement to){
         this.connectedTo.add(to);
     }
+
+    public void addConnection(ArrayList links){
+        this.connectedTo.addAll(links);
+    }
+
 
     public boolean isConnected(Settlement to) {
         if (this.equals(to)) {
