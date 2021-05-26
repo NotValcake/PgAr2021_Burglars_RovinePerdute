@@ -5,7 +5,7 @@ public class TESTreader {
     private static final String file = "test_file/PgAr_Map_12.xml";
     public static void main(String[] args) throws XMLStreamException {
 
-        ArrayList<Settlement> settlements = XMLReader.readCity(file);
+        ArrayList<Settlement> settlements = XMLReader.readMap(file);
 
 
         for (int i = 0; i < settlements.size(); i++) {
@@ -16,7 +16,7 @@ public class TESTreader {
             System.out.println("X: " + s.getX());
             System.out.println("Y: " + s.getY());
             System.out.println("H: " + s.getHeight());
-              System.out.println("links: " + s.getConnected());
+            System.out.println("links: " + s.getConnected().size());
             System.out.println("-------------------");
 
         }

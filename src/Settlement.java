@@ -12,7 +12,7 @@ public class Settlement {
     private int id;
     private int[] coords = new int[3];
 
-    private ArrayList<Settlement> connectedTo = new ArrayList<>();
+    private ArrayList<Integer> connectedTo = new ArrayList<>();
 
     public Settlement(String name, int id, int[] coords) {
         this.name = name;
@@ -66,7 +66,7 @@ public class Settlement {
         this.coords[HEIGHT] = h;
     }
 
-    public void addConnection(Settlement to){
+    public void addConnection(Integer to){
         this.connectedTo.add(to);
     }
 
@@ -82,30 +82,13 @@ public class Settlement {
         return connectedTo.contains(to);
     }
 
-    public ArrayList<Settlement> getConnected(){
+    public ArrayList<Integer> getConnected(){
         return this.connectedTo;
     }
 
-    public Settlement getConnectedById(int id){
-        for (Settlement s :
-                connectedTo) {
-            if (s.getId() == id){
-                return s;
-            }
-        }
-        return null;
+    public boolean getConnectedById(int id){
+        return connectedTo.contains(id);
     }
-
-    public Settlement getConnectedByName(String name ){
-        for (Settlement s :
-                connectedTo) {
-            if (s.equals(name)){
-                return s;
-            }
-        }
-        return null;
-    }
-
 
 
     @Override
