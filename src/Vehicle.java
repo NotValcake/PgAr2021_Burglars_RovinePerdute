@@ -13,11 +13,13 @@ public abstract class Vehicle {
      *
      * @return a Graph containing the minimum spanning three
      */
-    //TODO QUI COMINCIA LA MAGIA OSCURA,
-    //per me si va nell'etterno dolore,
-    //per me si va tra la perduta gente.
+    //TODO QUI COMINCIA LA MAGIA OSCURA, avadakedavra!
+    //per me si va nell'etterno grafo,
+    //per me si va tra il perduto percorso.
     //[...]
     //Lasciate ogne speranza, voi ch'intrate.
+    //L'Inferno by NotValcake
+    //All rights reserved
     public MyMap getMinimumPaths() {
 
         MyMap minimum_paths = this.getMap();
@@ -57,6 +59,7 @@ public abstract class Vehicle {
      * @return an array of int containing the list of nodes
      */
     public int[] findQuickestPath(int to){
+
         return null;
     }
 
