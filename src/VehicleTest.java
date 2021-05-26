@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class VehicleTest {
 
 
@@ -8,30 +10,55 @@ public class VehicleTest {
         coords[1] = 3;
 
         Settlement s1 = new Settlement( "A", 0, coords);
+        s1.addConnection(2);
+        s1.addConnection(3);
+        s1.addConnection(6);
         coords[0] = 45;
         coords[1] = 5;
         Settlement s2 = new Settlement( "B", 1, coords);
+        s2.addConnection(2);
+        s2.addConnection(4);
         coords[0] = 6;
         coords[1] = 3;
         Settlement s3 = new Settlement( "C", 2, coords);
+        s3.addConnection(2);
+        s3.addConnection(8);
+        s3.addConnection(7);
         coords[0] = 8;
         coords[1] = 2;
         Settlement s4 = new Settlement( "D", 3, coords);
+        s4.addConnection(4);
+        s4.addConnection(0);
+        s4.addConnection(1);
+        s4.addConnection(2);
+        s4.addConnection(3);
         coords[0] = 43;
         coords[1] = 34;
         Settlement s5 = new Settlement( "E", 4, coords);
+        s5.addConnection(7);
         coords[0] = 8;
         coords[1] = 4;
         Settlement s6 = new Settlement( "F", 5, coords);
+        s6.addConnection(1);
+        s6.addConnection(2);
+        s6.addConnection(4);
         coords[0] = 8;
         coords[1] = 1;
         Settlement s7 = new Settlement( "G", 6, coords);
+        s7.addConnection(2);
+        s7.addConnection(0);
+        s7.addConnection(7);
         coords[0] = 3;
         coords[1] = 6;
         Settlement s8 = new Settlement( "H", 7, coords);
+        s8.addConnection(2);
+        s8.addConnection(0);
+        s8.addConnection(8);
         coords[0] = 7;
         coords[1] = 4;
         Settlement s9 = new Settlement( "I", 8, coords);
+        s9.addConnection(6);
+        s9.addConnection(5);
 
         MyMap map = new MyMap();
 
@@ -43,6 +70,7 @@ public class VehicleTest {
         map.addNode(s6);
         map.addNode(s7);
         map.addNode(s8);
+        map.addNode(s9);
 
         GroundVehicle v = new GroundVehicle(map);
 

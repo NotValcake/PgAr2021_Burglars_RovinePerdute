@@ -13,7 +13,12 @@ public abstract class Vehicle {
      *
      * @return a Graph containing the minimum spanning three
      */
-    public MyMap getMinimumPaths() {//TODO finire implementazione Dij
+    //TODO QUI COMINCIA LA MAGIA OSCURA,
+    //per me si va nell'etterno dolore,
+    //per me si va tra la perduta gente.
+    //[...]
+    //Lasciate ogne speranza, voi ch'intrate.
+    public MyMap getMinimumPaths() {
 
         MyMap minimum_paths = this.getMap();
 
@@ -28,10 +33,11 @@ public abstract class Vehicle {
 
         while(!queue.isEmpty()){
             Settlement current_node = queue.poll();
-            int current_node_id = current_node.getNearestId();
+            int current_node_id = current_node.getId();
             double current_node_fuel = current_node.getFuelToTheNearest();
             visited[current_node_id] = true;
-            for (int s: minimum_paths.getNode(current_node_id).getConnected()) {
+            for (Integer s: minimum_paths.getNode(current_node_id).getConnected()) {
+                if(visited[s]) continue;
                 double temp_fuel = current_node_fuel + getFuel(minimum_paths.getNode(s), minimum_paths.getNode(current_node_id));
                 if(temp_fuel <= minimum_paths.getNode(current_node_id).getFuelToTheNearest()){
                     minimum_paths.getNode(current_node_id).setFuelToNearest(temp_fuel);
