@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.*;
 
 public abstract class Vehicle {
 
@@ -15,25 +13,35 @@ public abstract class Vehicle {
      *
      * @return a Graph containing the minimum spanning three
      */
-    private MyMap getMinimumPaths() {//TODO finire implementazione Dij
+    public MyMap getMinimumPaths() {//TODO finire implementazione Dij
 
-        TreeMap<Integer, Settlement> to_be_visited = new TreeMap<>(); //array di boolean che contiene i nodi visitati
-        ArrayList<TreeMap<Integer, Double>> nodes = new ArrayList<>();//for each node, the key will hold the previous and the second box will hold their distance
+        MyMap minimum_paths = this.getMap();
 
-        for (int i = 0; i < map.getNodes().size(); i++){
-            nodes.add(new TreeMap<>());
-            to_be_visited.put(map.getNode(i).getId(), map.getNode(i));
+        PriorityQueue<Settlement> queue = new PriorityQueue<>();
+        boolean[] visited = new boolean[minimum_paths.getNodesNum()];
+
+        visited[0] = true;
+        minimum_paths.getNode(0).setNearestId(0);
+        minimum_paths.getNode(0).setFuelToNearest(0);
+
+        queue.add(map.getNode(0));
+
+        while(!queue.isEmpty()){
+            Settlement current_node = queue.poll();
+            int current_node_id = current_node.getNearestId();
+            double current_node_fuel = current_node.getFuelToTheNearest();
+            visited[current_node_id] = true;
+            for (int s: minimum_paths.getNode(current_node_id).getConnected()) {
+                double temp_fuel = current_node_fuel + getFuel(minimum_paths.getNode(s), minimum_paths.getNode(current_node_id));
+                if(temp_fuel <= minimum_paths.getNode(current_node_id).getFuelToTheNearest()){
+                    minimum_paths.getNode(current_node_id).setFuelToNearest(temp_fuel);
+                    minimum_paths.getNode(current_node_id).setNearestId(s);
+                    queue.add(minimum_paths.getNode(s));
+                }
+            }
         }
 
-        int i = 0;
-
-        while(!to_be_visited.isEmpty()){
-            Settlement actual_node = to_be_visited.get(to_be_visited.firstKey());
-
-            to_be_visited.remove(actual_node.getId());
-        }
-
-        return null;
+        return minimum_paths;
     }
 
     /**
