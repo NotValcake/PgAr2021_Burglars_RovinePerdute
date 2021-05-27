@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Settlement implements Comparable{
+public class Settlement implements Comparable {
 
     private static int X = 0;
     private static int Y = 1;
@@ -20,8 +20,6 @@ public class Settlement implements Comparable{
         this.id = id;
         this.coords = coords;
     }
-
-
 
 
     public Settlement() {
@@ -67,11 +65,13 @@ public class Settlement implements Comparable{
         this.coords[HEIGHT] = h;
     }
 
-    public void addConnection(Integer to){
+    public void addConnection(Integer to) {
+
         this.connectedTo.add(to);
     }
 
-    public void addConnection(ArrayList links){
+    public void addConnection(ArrayList links) {
+
         this.connectedTo.addAll(links);
     }
 
@@ -83,19 +83,23 @@ public class Settlement implements Comparable{
         return connectedTo.contains(to);
     }
 
-    public ArrayList<Integer> getConnected(){
+    public ArrayList<Integer> getConnected() {
+
         return this.connectedTo;
     }
 
-    public boolean getConnectedById(int id){
+    public boolean getConnectedById(int id) {
+
         return connectedTo.contains(id);
     }
 
-    public void setFuelToNearest(double fuel){
+    public void setFuelToNearest(double fuel) {
+
         this.fuel_to_the_quickest = fuel;
     }
 
-    public double getFuelToTheNearest(){
+    public double getFuelToTheNearest() {
+
         return this.fuel_to_the_quickest;
     }
 
@@ -131,7 +135,7 @@ public class Settlement implements Comparable{
 
     @Override
     public int compareTo(Object that) {
-        if(that instanceof Settlement){
+        if (that instanceof Settlement) {
             Settlement t = (Settlement) that;
             return Double.compare(this.getFuelToTheNearest(), t.getFuelToTheNearest());
         }

@@ -22,26 +22,30 @@ public abstract class Vehicle {
 
         MyMap minimum_paths = this.getMap();
 
+        TreeSet<Settlement> mst = new TreeSet<>(); //our minimum spanning tree, initially empty
+
         PriorityQueue<Settlement> queue = new PriorityQueue<>();
-        boolean[] visited = new boolean[minimum_paths.getNodesNum()];
 
-        visited[0] = true;
-        minimum_paths.getNode(0).setNearestId(0);
-        minimum_paths.getNode(0).setFuelToNearest(0);
+        mst.add(getMap().getNode(0));
 
-        queue.add(map.getNode(0));
+        getMap().getNode(0).setNearestId(0);
+        getMap().getNode(0).setFuelToNearest(0);
 
-        while(!queue.isEmpty()){
+        queue.add(getMap().getNode(0));
+
+        while(mst.size() != getMap().getNodesNum()){ //finchè il nostro mst non contiene tutti i nodi proseguo
+
             Settlement current_node = queue.poll();
             int current_node_id = current_node.getId();
             double current_node_fuel = current_node.getFuelToTheNearest();
-            visited[current_node_id] = true;
-            for (Integer s: minimum_paths.getNode(current_node_id).getConnected()) {
-                if(visited[s]) continue;
-                double temp_fuel = current_node_fuel + getFuel(minimum_paths.getNode(s), minimum_paths.getNode(current_node_id));
-                if(temp_fuel <= minimum_paths.getNode(current_node_id).getFuelToTheNearest()){
-                    minimum_paths.getNode(current_node_id).setFuelToNearest(temp_fuel);
-                    minimum_paths.getNode(current_node_id).setNearestId(s);
+            mst.add(current_node);
+
+            for (Integer s: getMap().getNode(current_node_id).getConnected()) {
+                double temp_fuel = current_node_fuel + getFuel(getMap().getNode(s), getMap().getNode(current_node_id));
+                if(temp_fuel <= getMap().getNode(s).getFuelToTheNearest()){
+                    getMap().getNode(s).setFuelToNearest(temp_fuel);
+                    getMap().getNode(s).setNearestId(current_node_id);
+                    if(mst.contains(getMap().getNode(s))) continue;
                     queue.add(minimum_paths.getNode(s));
                 }
             }
