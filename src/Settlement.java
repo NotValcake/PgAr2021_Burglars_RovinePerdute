@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Settlement implements Comparable {
+public class Settlement implements Comparable<Settlement> {
 
-    private static int X = 0;
-    private static int Y = 1;
-    private static int HEIGHT = 2;
+    private static final int X = 0;
+    private static final int Y = 1;
+    private static final int HEIGHT = 2;
 
     private String name;
     private int id;
     private int[] coords = new int[3];
-    private double fuel_to_the_quickest = Double.POSITIVE_INFINITY; //utility attribute meant to be used for pathfinding
+    private double fuelFromStart = Double.POSITIVE_INFINITY; //utility attribute meant to be used for pathfinding
     private Integer nearest_id = null;
 
     private ArrayList<Integer> connectedTo = new ArrayList<>();
@@ -95,12 +95,12 @@ public class Settlement implements Comparable {
 
     public void setFuelToNearest(double fuel) {
 
-        this.fuel_to_the_quickest = fuel;
+        this.fuelFromStart = fuel;
     }
 
-    public double getFuelToTheNearest() {
+    public double getFuelFromStart() {
 
-        return this.fuel_to_the_quickest;
+        return this.fuelFromStart;
     }
 
     public Integer getNearestId() {
@@ -128,17 +128,8 @@ public class Settlement implements Comparable {
         return Objects.hash(getName(), getId());
     }
 
-
-    public int compareTo(Settlement that) {
-        return Double.compare(this.getFuelToTheNearest(), that.getFuelToTheNearest());
-    }
-
     @Override
-    public int compareTo(Object that) {
-        if (that instanceof Settlement) {
-            Settlement t = (Settlement) that;
-            return Double.compare(this.getFuelToTheNearest(), t.getFuelToTheNearest());
-        }
-        throw (new IllegalArgumentException());
+    public int compareTo(Settlement that) {
+        return Double.compare(this.getFuelFromStart(), that.getFuelFromStart());
     }
 }

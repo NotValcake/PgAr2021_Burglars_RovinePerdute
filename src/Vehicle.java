@@ -2,7 +2,7 @@ import java.util.*;
 
 public abstract class Vehicle {
 
-    private MyMap map;
+    private final MyMap map;
 
     public Vehicle(MyMap map) {
         this.map = map;
@@ -11,7 +11,7 @@ public abstract class Vehicle {
     /**
      * gets the minimum spanning three out of the map
      *
-     * @return a Graph containing the minimum spanning three
+     * @return a MyMap instance containing the minimum spanning three
      */
     //TODO QUI COMINCIA LA MAGIA OSCURA, avadakedavra!
     //per me si va nell'etterno grafo,
@@ -22,12 +22,11 @@ public abstract class Vehicle {
     //All rights reserved
     public MyMap getMinimumPaths() {
 
-        MyMap minimum_paths = this.getMap();
-
         TreeSet<Settlement> mst = new TreeSet<>(); //our minimum spanning tree, initially empty
 
-        PriorityQueue<Settlement> queue = new PriorityQueue<>();
+        PriorityQueue<Settlement> queue = new PriorityQueue<>();//priority q allows us to auto-choose the nearest node each time
 
+        //first node setup
         mst.add(getMap().getNode(0));
 
         getMap().getNode(0).setNearestId(0);
@@ -35,25 +34,25 @@ public abstract class Vehicle {
 
         queue.add(getMap().getNode(0));
 
-        while(mst.size() != getMap().getNodesNum()){ //finchè il nostro mst non contiene tutti i nodi proseguo
+        //keep iterating until all nodes are visited
+        while(mst.size() != getMap().getNodesNum()){
 
-            Settlement current_node = queue.poll();
+            Settlement current_node = queue.poll(); //check the closest node to the previous one, based on the fuel_from_starting param
             int current_node_id = current_node.getId();
-            double current_node_fuel = current_node.getFuelToTheNearest();
-            mst.add(current_node);
+            double current_node_fuel = current_node.getFuelFromStart();
+            mst.add(current_node); //add the current node to the visited set
 
             for (Integer s: getMap().getNode(current_node_id).getConnected()) {
                 double temp_fuel = current_node_fuel + getFuel(getMap().getNode(s), getMap().getNode(current_node_id));
-                if(temp_fuel <= getMap().getNode(s).getFuelToTheNearest()){
+                if(temp_fuel <= getMap().getNode(s).getFuelFromStart()){ //if the new path is shorter, update the path
                     getMap().getNode(s).setFuelToNearest(temp_fuel);
                     getMap().getNode(s).setNearestId(current_node_id);
-                    if(mst.contains(getMap().getNode(s))) continue;
-                    queue.add(minimum_paths.getNode(s));
+                    if(mst.contains(getMap().getNode(s))) continue; //if we already visited the next node we can skip it
+                    queue.add(getMap().getNode(s)); //if not we put it into the priority q for the next iteration
                 }
             }
         }
-
-        return minimum_paths;
+        return getMap();
     }
 
     /**
@@ -69,6 +68,7 @@ public abstract class Vehicle {
 
     /**
      * Calculates the fuel consumption to move from a node to another based on the kind of vehicle
+     *
      * @param from the starting node
      * @param to the destination node
      * @return the fuel consumption
