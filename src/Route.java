@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+
 public class Route {
 
     private String team;
     private MyMap map;
     private double fuel;
-    private int[] route;
+    private ArrayList<Settlement> route;
 
     public Route(String team, MyMap map) {
         this.team = team;
@@ -34,7 +36,7 @@ public class Route {
         this.fuel = fuel;
     }
 
-    public int[] getRoute() {
+    public ArrayList<Settlement> getRoute() {
         return route;
     }
 

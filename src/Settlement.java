@@ -83,7 +83,9 @@ public class Settlement implements Comparable<Settlement> {
         return this.connectedTo;
     }
 
-    /**Set the fuel used from the starting node to this, it is used for pathfinding purposes
+    /**
+     * Set the fuel used from the starting node to this, it is used for pathfinding purposes
+     *
      * @param fuel the fuel from the starting settlement
      */
     public void setFuelFromStart(double fuel) {
@@ -93,6 +95,7 @@ public class Settlement implements Comparable<Settlement> {
 
     /**
      * Get the fuel used from the starting node to this, used for pathfinding purposes
+     *
      * @return the fuel from the starting settlement
      */
     public double getFuelFromStart() {
@@ -109,6 +112,7 @@ public class Settlement implements Comparable<Settlement> {
 
     /**
      * set the id of the closest Settlement in the map, for pathfinding purposes
+     *
      * @param id the id of the closest Settlement
      */
     public void setClosestId(int id) {
@@ -117,6 +121,7 @@ public class Settlement implements Comparable<Settlement> {
 
     /**
      * Check if a given object is equal to this based on their ids
+     *
      * @param o the object to be checked
      * @return true if o and this are equal, else false
      */
@@ -130,6 +135,7 @@ public class Settlement implements Comparable<Settlement> {
 
     /**
      * Check if a given String is equal to this based on his name
+     *
      * @param name the name to be checked
      * @return true if o and this are equal, else false
      */
@@ -144,6 +150,7 @@ public class Settlement implements Comparable<Settlement> {
 
     /**
      * Compares two settlements based on the fuel consumption from the start
+     *
      * @param that Settlement to be compared with this
      * @return -1 if this is closer to the start than that, 0 if this and that are equal, 1 if that is closer to the start
      */

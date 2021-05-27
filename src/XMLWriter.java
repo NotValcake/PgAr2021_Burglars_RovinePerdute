@@ -49,12 +49,12 @@ public class XMLWriter {
         writer.writeStartElement("route");
         writer.writeAttribute("team", r.getTeam());
         writer.writeAttribute("cost", r.getFuel().toString());
-        writer.writeAttribute("cities", Integer.toString(r.getRoute().length));
+        writer.writeAttribute("cities", Integer.toString(r.getRoute().size()));
 
-        for (int city : r.getRoute()) {
+        for (Settlement city : r.getRoute()) {
             writer.writeEmptyElement("city");
-            writer.writeAttribute("id", Integer.toString(city));
-            writer.writeAttribute("name", r.getCityName(city));
+            writer.writeAttribute("id", Integer.toString(city.getId()));
+            writer.writeAttribute("name", city.getName());
         }
         writer.writeEndElement();
     }

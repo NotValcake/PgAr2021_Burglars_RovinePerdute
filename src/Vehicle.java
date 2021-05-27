@@ -61,9 +61,17 @@ public abstract class Vehicle {
      * @param to the destination we want to get the quickest path for
      * @return an array of int containing the list of nodes
      */
-    public int[] findQuickestPath(int to){
-
-        return null;
+    public ArrayList<Settlement> findQuickestPath(int to){
+        getMinimumPaths();
+        ArrayList<Settlement> route = new ArrayList<>();
+        Settlement current_node = getMap().getNode(to);
+        while(current_node.getId() != 0){
+            route.add(current_node);
+            current_node = getMap().getNode(current_node.getClosestId());
+        }
+        route.add(current_node);
+        Collections.reverse(route);
+        return route;
     }
 
     /**
