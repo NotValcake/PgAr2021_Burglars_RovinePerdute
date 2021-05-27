@@ -75,25 +75,12 @@ public class Settlement implements Comparable<Settlement> {
         this.connectedTo.addAll(links);
     }
 
-
-    public boolean isConnected(Settlement to) {
-        if (this.equals(to)) {
-            throw (new IllegalArgumentException());
-        }
-        return connectedTo.contains(to);
-    }
-
     public ArrayList<Integer> getConnected() {
 
         return this.connectedTo;
     }
 
-    public boolean getConnectedById(int id) {
-
-        return connectedTo.contains(id);
-    }
-
-    public void setFuelToNearest(double fuel) {
+    public void setFuelFromStart(double fuel) {
 
         this.fuelFromStart = fuel;
     }
