@@ -90,7 +90,7 @@ public class VehicleTest {
         MyMap min = v.getMinimumPaths();
 
         for (Settlement s : min.getNodes()) {
-            System.out.printf("%s -> %s (%.2f)\n", s.getName(), min.getNode(s.getNearestId()).getName(), s.getFuelFromStart());
+            System.out.printf("%s -> %s (%.2f)\n", s.getName(), min.getNode(s.getClosestId()).getName(), s.getFuelFromStart());
         }
     }
 

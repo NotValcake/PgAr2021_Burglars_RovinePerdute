@@ -75,29 +75,51 @@ public class Settlement implements Comparable<Settlement> {
         this.connectedTo.addAll(links);
     }
 
+    /**
+     * @return the ArrayList containing the id of all the connected Settlements
+     */
     public ArrayList<Integer> getConnected() {
 
         return this.connectedTo;
     }
 
+    /**Set the fuel used from the starting node to this, it is used for pathfinding purposes
+     * @param fuel the fuel from the starting settlement
+     */
     public void setFuelFromStart(double fuel) {
 
         this.fuelFromStart = fuel;
     }
 
+    /**
+     * Get the fuel used from the starting node to this, used for pathfinding purposes
+     * @return the fuel from the starting settlement
+     */
     public double getFuelFromStart() {
 
         return this.fuelFromStart;
     }
 
-    public Integer getNearestId() {
+    /**
+     * @return the Id of the closest Settlement in the map, for pathfinding purposes
+     */
+    public Integer getClosestId() {
         return nearest_id;
     }
 
-    public void setNearestId(int nearest_id) {
-        this.nearest_id = nearest_id;
+    /**
+     * set the id of the closest Settlement in the map, for pathfinding purposes
+     * @param id the id of the closest Settlement
+     */
+    public void setClosestId(int id) {
+        this.nearest_id = id;
     }
 
+    /**
+     * Check if a given object is equal to this based on their ids
+     * @param o the object to be checked
+     * @return true if o and this are equal, else false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -106,6 +128,11 @@ public class Settlement implements Comparable<Settlement> {
         return getId() == that.getId();
     }
 
+    /**
+     * Check if a given String is equal to this based on his name
+     * @param name the name to be checked
+     * @return true if o and this are equal, else false
+     */
     public boolean equals(String name) {
         return this.getName().equals(name);
     }
@@ -115,6 +142,11 @@ public class Settlement implements Comparable<Settlement> {
         return Objects.hash(getName(), getId());
     }
 
+    /**
+     * Compares two settlements based on the fuel consumption from the start
+     * @param that Settlement to be compared with this
+     * @return -1 if this is closer to the start than that, 0 if this and that are equal, 1 if that is closer to the start
+     */
     @Override
     public int compareTo(Settlement that) {
         return Double.compare(this.getFuelFromStart(), that.getFuelFromStart());
