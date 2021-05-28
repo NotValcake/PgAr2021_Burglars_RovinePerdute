@@ -3,13 +3,14 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class MyMap{
-
-    //find settlements by the respective integer id
+    //todo aggiunto destination attribute(id di rovine)
     private HashMap<Integer, Settlement> map;
+    private int destination;
 
     public MyMap() {
         this.map = new HashMap<>();
     }
+
 
     /**
      * Make a new MyMap out of the given Settlements array
@@ -22,8 +23,12 @@ public class MyMap{
         for (Settlement s : settlements) {
             this.map.put(s.getId(), s);
         }
+        this.destination = (map.size() -1);
     }
 
+    public int getDestination() {
+        return destination;
+    }
 
     /**
      * Adds the settlement to the map if not present

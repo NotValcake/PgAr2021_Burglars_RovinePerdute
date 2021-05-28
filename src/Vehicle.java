@@ -3,7 +3,7 @@ import java.util.*;
 public abstract class Vehicle {
 
     private final MyMap map;
-
+    private double fuelForQuickesPath;
     public Vehicle(MyMap map) {
         this.map = map;
     }
@@ -50,6 +50,7 @@ public abstract class Vehicle {
                     if(mst.contains(getMap().getNode(s))) continue; //if we already visited the next node we can skip it
                     queue.add(getMap().getNode(s)); //if not we put it into the priority q for the next iteration
                 }
+
             }
         }
         return getMap();
