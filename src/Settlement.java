@@ -25,6 +25,20 @@ public class Settlement implements Comparable<Settlement> {
     public Settlement() {
     }
 
+    /**
+     * utility method to shallow copy a settlement
+     *
+     * @param s the settlement to be copied
+     * @return the s shallow copy
+     */
+    public static Settlement clone(Settlement s) {
+        int[] coords = new int[3];
+        coords[0] = s.getX();
+        coords[1] = s.getY();
+        coords[2] = s.getHeight();
+        return new Settlement(s.getName(), s.getId(), coords);
+    }
+
     public String getName() {
         return name;
     }

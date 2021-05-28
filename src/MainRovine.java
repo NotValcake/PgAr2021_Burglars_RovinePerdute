@@ -22,14 +22,22 @@ public class MainRovine {
         UserInterface.printMenu();
         String input_file= INPUT_FILES[UserInterface.controllaScelta( INPUT_FILES.length) ];
 
-        ArrayList<Settlement> settlements = XMLReader.readMap(input_file);
-        MyMap mapJ = new MyMap(settlements);
-        MyMap mapG = new MyMap(settlements);  //da usare per ciascun veicolo
+        ArrayList<Settlement> settlements1 = XMLReader.readMap(input_file);
+        MyMap mapJ = new MyMap(settlements1);
+
+        ArrayList<Settlement> settlements2 = new ArrayList<>();
+
+        for (Settlement s: settlements1) {
+            settlements2.add(Settlement.clone(s));
+        } //shallow copying the array and its objects
+
+        MyMap mapG = new MyMap(settlements1);  //da usare per ciascun veicolo
+
         JumpingVehicle vJ = new JumpingVehicle(mapJ);
-        JumpingVehicle vG = new JumpingVehicle(mapG);
+        GroundVehicle vG = new GroundVehicle(mapG);
 
         Route rottaJ = new Route(teamJump, mapJ);
-        rottaJ.setRoute(vJ, mapJ.getDestination());
+        //rottaJ.setRoute(vJ, mapJ.getDestination());
 
         Route rottaG = new Route(teamGround, mapG);
         rottaG.setRoute(vG, mapG.getDestination());
@@ -37,7 +45,7 @@ public class MainRovine {
 
         XMLWriter writer = new XMLWriter(OUTPUT_FILE);
         writer.writeRoute(rottaG);
-        writer.writeRoute(rottaJ);
+        //writer.writeRoute(rottaJ);
         writer.endWriter();
     }
 }

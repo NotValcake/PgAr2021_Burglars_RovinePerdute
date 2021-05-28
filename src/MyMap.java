@@ -11,7 +11,6 @@ public class MyMap{
         this.map = new HashMap<>();
     }
 
-
     /**
      * Make a new MyMap out of the given Settlements array
      * @param settlements an ArrayList of Settlements
