@@ -42,6 +42,7 @@ public class Route {
 
     public void setRoute(Vehicle v, int to) {
         this.route = v.findQuickestPath(to);
+        this.fuel = map.getNode(map.getDestination()).getFuelFromStart();
     }
 
     public String getCityName(int id){

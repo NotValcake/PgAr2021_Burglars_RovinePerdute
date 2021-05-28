@@ -7,6 +7,7 @@ public class VehicleTest {
         int[] coords = new int[3];
         coords[0] = 4;
         coords[1] = 3;
+        coords[2] = 5;
         Settlement s1 = new Settlement("A", 0, coords);
         s1.addConnection(2);
         s1.addConnection(3);
@@ -15,6 +16,7 @@ public class VehicleTest {
         coords = new int[3];
         coords[0] = 45;
         coords[1] = 5;
+        coords[2] = 5;
         Settlement s2 = new Settlement("B", 1, coords);
         s2.addConnection(2);
         s2.addConnection(4);
@@ -22,6 +24,8 @@ public class VehicleTest {
         coords = new int[3];
         coords[0] = 6;
         coords[1] = 3;
+        coords[2] = 10;
+
         Settlement s3 = new Settlement("C", 2, coords);
         s3.addConnection(3);
         s3.addConnection(8);
@@ -30,6 +34,8 @@ public class VehicleTest {
         coords = new int[3];
         coords[0] = 8;
         coords[1] = 2;
+        coords[2] = 34;
+
         Settlement s4 = new Settlement("D", 3, coords);
         s4.addConnection(4);
         s4.addConnection(0);
@@ -40,12 +46,16 @@ public class VehicleTest {
         coords = new int[3];
         coords[0] = 43;
         coords[1] = 34;
+        coords[2] = 17;
+
         Settlement s5 = new Settlement("E", 4, coords);
         s5.addConnection(7);
 
         coords = new int[3];
         coords[0] = 8;
         coords[1] = 4;
+        coords[2] = 25;
+
         Settlement s6 = new Settlement("F", 5, coords);
         s6.addConnection(1);
         s6.addConnection(2);
@@ -54,6 +64,8 @@ public class VehicleTest {
         coords = new int[3];
         coords[0] = 8;
         coords[1] = 1;
+        coords[2] = 21;
+
         Settlement s7 = new Settlement("G", 6, coords);
         s7.addConnection(2);
         s7.addConnection(0);
@@ -62,6 +74,8 @@ public class VehicleTest {
         coords = new int[3];
         coords[0] = 3;
         coords[1] = 6;
+        coords[2] = 19;
+
         Settlement s8 = new Settlement("H", 7, coords);
         s8.addConnection(2);
         s8.addConnection(0);
@@ -70,6 +84,8 @@ public class VehicleTest {
         coords = new int[3];
         coords[0] = 7;
         coords[1] = 4;
+        coords[2] = 52;
+
         Settlement s9 = new Settlement("I", 8, coords);
         s9.addConnection(6);
         s9.addConnection(5);
@@ -86,7 +102,7 @@ public class VehicleTest {
         map.addNode(s8);
         map.addNode(s9);
 
-        GroundVehicle v = new GroundVehicle(map);
+        JumpingVehicle v = new JumpingVehicle(map);
 
         MyMap min = v.getMinimumPaths();
 

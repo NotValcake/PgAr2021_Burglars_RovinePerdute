@@ -31,12 +31,12 @@ public class MainRovine {
             settlements2.add(Settlement.clone(s));
         } //shallow copying the array and its objects
 
-        MyMap mapG = new MyMap(settlements1);  //da usare per ciascun veicolo
+        MyMap mapG = new MyMap(settlements2);  //da usare per ciascun veicolo
 
         JumpingVehicle vJ = new JumpingVehicle(mapJ);
         GroundVehicle vG = new GroundVehicle(mapG);
 
-        Route rottaJ = new Route(teamJump, mapJ);
+        //Route rottaJ = new Route(teamJump, mapJ);
         //rottaJ.setRoute(vJ, mapJ.getDestination());
 
         Route rottaG = new Route(teamGround, mapG);

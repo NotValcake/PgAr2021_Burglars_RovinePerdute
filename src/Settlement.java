@@ -36,7 +36,9 @@ public class Settlement implements Comparable<Settlement> {
         coords[0] = s.getX();
         coords[1] = s.getY();
         coords[2] = s.getHeight();
-        return new Settlement(s.getName(), s.getId(), coords);
+        Settlement cloned = new Settlement(s.getName(), s.getId(), coords);
+        cloned.addConnection((ArrayList<Settlement>) s.getConnected().clone());
+        return cloned;
     }
 
     public String getName() {
