@@ -35,26 +35,26 @@ public abstract class Vehicle {
         mst.add(getMap().getNode(0));
 
         //keep iterating until all nodes are visited
-        while(mst.size() > 0){
+        while(mst.size() > 0 && !visited[getMap().getNodesNum()-1]){
 
             Settlement current_node = mst.pollFirst(); //check the closest node to the previous one, based on the fuel_from_starting param
             int current_node_id = current_node.getId();
             double current_node_fuel = current_node.getFuelFromStart();
 
-            if(visited[current_node_id]) continue;;
+            if(visited[current_node_id]) continue;
+
+            visited[current_node_id] = true; //mark current node as visited
 
             for (Integer s: getMap().getNode(current_node_id).getConnected()) { //check all the nodes connected to the current one
                 double temp_fuel = current_node_fuel + getFuel(getMap().getNode(s), getMap().getNode(current_node_id));
-                if(temp_fuel <= getMap().getNode(s).getFuelFromStart()){ //if the new path is shorter, update the path
+                if(temp_fuel < getMap().getNode(s).getFuelFromStart()){ //if the new path is shorter, update the path
                     getMap().getNode(s).setFuelFromStart(temp_fuel);
                     getMap().getNode(s).setClosestId(current_node_id);
-                    if(mst.contains(getMap().getNode(s))) continue; //if we already visited the next node we can skip it
-                    mst.add(getMap().getNode(s)); //if not we put it into the priority q for the next iteration
+                    if(!visited[s]) { //if we already visited the next node we can skip it
+                        mst.add(getMap().getNode(s)); //if not we put it into the priority q for the next iteration
+                    }
                 }
-
             }
-
-            visited[current_node_id] = true; //mark current node as visited
         }
         return getMap();
     }
