@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class TESTreader {
     private static final String file = "test_file/PgAr_Map_12.xml";
+
     public static void main(String[] args) throws XMLStreamException {
 
         ArrayList<Settlement> settlements = XMLReader.readMap(file);

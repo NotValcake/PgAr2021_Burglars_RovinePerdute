@@ -110,19 +110,19 @@ public class VehicleTest {
             System.out.printf("%s -> %s (%.2f)\n", s.getName(), min.getNode(s.getClosestId()).getName(), s.getFuelFromStart());
         }
 
-        ArrayList<Settlement> route =  v.findQuickestPath(s4.getId());
+        ArrayList<Settlement> route = v.findQuickestPath(s4.getId());
 
         for (Settlement s : route) {
             System.out.printf("%s -> ", s.getName());
         }
         System.out.println();
-        route =  v.findQuickestPath(s5.getId());
+        route = v.findQuickestPath(s5.getId());
 
         for (Settlement s : route) {
             System.out.printf("%s -> ", s.getName());
         }
         System.out.println();
-        route =  v.findQuickestPath(s3.getId());
+        route = v.findQuickestPath(s3.getId());
 
         for (Settlement s : route) {
             System.out.printf("%s -> ", s.getName());

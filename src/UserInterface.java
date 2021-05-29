@@ -2,10 +2,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
+
     private static Scanner lettore = creaScanner();
     private final static String ERRORE_FORMATO = "Attenzione: il dato inserito non e' nel formato corretto";
 
-    public static void printMenu(){
+    public static void printMenu() {
         System.out.printf("Benvenuti nel programma! Scegliere il file da elaborare: " +
                 "%n 0 - PgAr_Map_5.xml" +
                 "%n 1 - PgAr_Map_12.xml" +
@@ -17,36 +18,29 @@ public class UserInterface {
     }
 
 
-    private static Scanner creaScanner ()
-    {
+    private static Scanner creaScanner() {
         Scanner creato = new Scanner(System.in);
         return creato;
     }
 
-    public static int controllaScelta(int maxNotInclusive){//from 0 inclusive to max Not Inclusive
-        System.out.println("Inserire l'indice: ");
+    public static int controllaScelta(int maxNotInclusive) {//from 0 inclusive to max Not Inclusive
         int scelta = leggiIntero("Inserire l'indice: ");
-        while(scelta < 0 || scelta >= maxNotInclusive) {
+        while (scelta < 0 || scelta >= maxNotInclusive) {
             scelta = leggiIntero("Inserire l'indice: ");
         }
         return scelta;
     }
 
 
-    public static int leggiIntero (String messaggio)
-    {
+    public static int leggiIntero(String messaggio) {
         boolean finito = false;
         int valoreLetto = 0;
-        do
-        {
+        do {
             System.out.print(messaggio);
-            try
-            {
+            try {
                 valoreLetto = lettore.nextInt();
                 finito = true;
-            }
-            catch (InputMismatchException e)
-            {
+            } catch (InputMismatchException e) {
                 System.out.println(ERRORE_FORMATO);
                 String daButtare = lettore.next();
             }

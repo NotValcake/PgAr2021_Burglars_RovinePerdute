@@ -3,10 +3,9 @@ import java.util.ArrayList;
 
 public class MainRovine {
 
-    // private static final ArrayList<String> INPUT_FILES = new
-    private static  final String teamJump = "Metztli";
-    private static  final String teamGround = "Tonatiuh";
-    private static  final String OUTPUT_FILE = "test_file/Routes.xml";
+    private static final String teamJump = "Metztli";
+    private static final String teamGround = "Tonatiuh";
+    private static final String OUTPUT_FILE = "test_file/Routes.xml";
 
     private static final String[] INPUT_FILES = {
             "test_file/PgAr_Map_5.xml",
@@ -20,14 +19,15 @@ public class MainRovine {
     public static void main(String[] args) throws XMLStreamException {
 
         UserInterface.printMenu();
-        String input_file= INPUT_FILES[UserInterface.controllaScelta( INPUT_FILES.length) ];
+        String input_file = INPUT_FILES[UserInterface.controllaScelta(INPUT_FILES.length)];
 
         ArrayList<Settlement> settlements1 = XMLReader.readMap(input_file);
+
         MyMap mapJ = new MyMap(settlements1);
 
         ArrayList<Settlement> settlements2 = new ArrayList<>();
 
-        for (Settlement s: settlements1) {
+        for (Settlement s : settlements1) {
             settlements2.add(Settlement.clone(s));
         } //shallow copying the array and its objects
 

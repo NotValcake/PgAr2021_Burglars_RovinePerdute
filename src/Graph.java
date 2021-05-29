@@ -10,7 +10,7 @@ public class Graph {
         }
     }
 
-    public void addVertex(){
+    public void addVertex() {
         this.adjList.add(new ArrayList<>());
     }
 

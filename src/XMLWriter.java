@@ -9,20 +9,21 @@ public class XMLWriter {
     public static final String FIRST_TAG = "routes";
     XMLStreamWriter writer;
 
-    public XMLWriter(String output_file){
+    public XMLWriter(String output_file) {
         this.writer = writerInit(output_file);
     }
 
-    public XMLStreamWriter getWriter(){
+    public XMLStreamWriter getWriter() {
         return this.writer;
     }
 
     /**
      * inizializza un nuovo writer con il realtivo OutputStream
+     *
      * @param output_file String contenente il nome del file da scrivere
      * @return un nuovo XMLStreamWriter
      */
-    public XMLStreamWriter writerInit(String output_file){
+    public XMLStreamWriter writerInit(String output_file) {
 
         XMLOutputFactory factory = null;
         XMLStreamWriter writer = null;
@@ -42,6 +43,7 @@ public class XMLWriter {
 
     /**
      * writes a Route on the output
+     *
      * @param r the route object to be written
      * @throws XMLStreamException
      */
@@ -61,6 +63,7 @@ public class XMLWriter {
 
     /**
      * chiude lo stream di output
+     *
      * @throws XMLStreamException
      */
     public void endWriter() throws XMLStreamException {
