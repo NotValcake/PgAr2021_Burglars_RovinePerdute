@@ -36,8 +36,8 @@ public class MainRovine {
         JumpingVehicle vJ = new JumpingVehicle(mapJ);
         GroundVehicle vG = new GroundVehicle(mapG);
 
-        //Route rottaJ = new Route(teamJump, mapJ);
-        //rottaJ.setRoute(vJ, mapJ.getDestination());
+        Route rottaJ = new Route(teamJump, mapJ);
+        rottaJ.setRoute(vJ, mapJ.getDestination());
 
         Route rottaG = new Route(teamGround, mapG);
         rottaG.setRoute(vG, mapG.getDestination());
@@ -45,7 +45,7 @@ public class MainRovine {
 
         XMLWriter writer = new XMLWriter(OUTPUT_FILE);
         writer.writeRoute(rottaG);
-        //writer.writeRoute(rottaJ);
+        writer.writeRoute(rottaJ);
         writer.endWriter();
     }
 }

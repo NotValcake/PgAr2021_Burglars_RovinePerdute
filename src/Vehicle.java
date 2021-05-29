@@ -22,9 +22,9 @@ public abstract class Vehicle {
     //All rights reserved
     public MyMap getMinimumPaths() {
 
+        boolean[] visited = new boolean[getMap().getNodesNum()];//tracking visited nodes
         TreeSet<Settlement> mst = new TreeSet<>(); //our minimum spanning tree, initially empty
 
-        PriorityQueue<Settlement> queue = new PriorityQueue<>();//priority q allows us to auto-choose the nearest node each time
 
         //first node setup
         mst.add(getMap().getNode(0));
@@ -32,26 +32,29 @@ public abstract class Vehicle {
         getMap().getNode(0).setClosestId(0);
         getMap().getNode(0).setFuelFromStart(0);
 
-        queue.add(getMap().getNode(0));
+        mst.add(getMap().getNode(0));
 
         //keep iterating until all nodes are visited
-        while(mst.size() != getMap().getNodesNum()){
+        while(mst.size() > 0){
 
-            Settlement current_node = queue.poll(); //check the closest node to the previous one, based on the fuel_from_starting param
+            Settlement current_node = mst.pollFirst(); //check the closest node to the previous one, based on the fuel_from_starting param
             int current_node_id = current_node.getId();
             double current_node_fuel = current_node.getFuelFromStart();
-            mst.add(current_node); //add the current node to the visited set
 
-            for (Integer s: getMap().getNode(current_node_id).getConnected()) {
+            if(visited[current_node_id]) continue;;
+
+            for (Integer s: getMap().getNode(current_node_id).getConnected()) { //check all the nodes connected to the current one
                 double temp_fuel = current_node_fuel + getFuel(getMap().getNode(s), getMap().getNode(current_node_id));
                 if(temp_fuel <= getMap().getNode(s).getFuelFromStart()){ //if the new path is shorter, update the path
                     getMap().getNode(s).setFuelFromStart(temp_fuel);
                     getMap().getNode(s).setClosestId(current_node_id);
                     if(mst.contains(getMap().getNode(s))) continue; //if we already visited the next node we can skip it
-                    queue.add(getMap().getNode(s)); //if not we put it into the priority q for the next iteration
+                    mst.add(getMap().getNode(s)); //if not we put it into the priority q for the next iteration
                 }
 
             }
+
+            visited[current_node_id] = true; //mark current node as visited
         }
         return getMap();
     }
