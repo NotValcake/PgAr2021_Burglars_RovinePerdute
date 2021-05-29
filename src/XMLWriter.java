@@ -48,17 +48,24 @@ public class XMLWriter {
      * @throws XMLStreamException
      */
     public void writeRoute(Route r) throws XMLStreamException {
+        writer.writeCharacters("\n");
+        writer.writeCharacters("\t\t");
         writer.writeStartElement("route");
         writer.writeAttribute("team", r.getTeam());
         writer.writeAttribute("cost", r.getFuel().toString());
         writer.writeAttribute("cities", Integer.toString(r.getRoute().size()));
 
         for (Settlement city : r.getRoute()) {
+            writer.writeCharacters("\n");
+            writer.writeCharacters("\t\t\t");
             writer.writeEmptyElement("city");
             writer.writeAttribute("id", Integer.toString(city.getId()));
             writer.writeAttribute("name", city.getName());
         }
+        writer.writeCharacters("\n");
+        writer.writeCharacters("\t\t");
         writer.writeEndElement();
+        writer.writeCharacters("\n");
     }
 
     /**

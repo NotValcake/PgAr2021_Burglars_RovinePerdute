@@ -13,7 +13,7 @@ public class UserInterface {
                 "%n 2 - PgAr_Map_50.xml" +
                 "%n 3 - PgAr_Map_200.xml " +
                 "%n 4 - PgAr_Map_2000.xml" +
-                "%n 5 - PgAr_Map_10000.xml");
+                "%n 5 - PgAr_Map_10000.xml %n");
 
     }
 
@@ -46,6 +46,10 @@ public class UserInterface {
             }
         } while (!finito);
         return valoreLetto;
+    }
+
+    public static void end(){
+        System.out.println("Il file Routes.xml è stato correttamente salvato in test_file!");
     }
 
 }
