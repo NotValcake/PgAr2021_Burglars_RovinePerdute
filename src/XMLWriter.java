@@ -52,7 +52,7 @@ public class XMLWriter {
         writer.writeCharacters("\t\t");
         writer.writeStartElement("route");
         writer.writeAttribute("team", r.getTeam());
-        writer.writeAttribute("cost", r.getFuel().toString());
+        writer.writeAttribute("cost", String.format("%.2f", r.getFuel()));
         writer.writeAttribute("cities", Integer.toString(r.getRoute().size()));
 
         for (Settlement city : r.getRoute()) {

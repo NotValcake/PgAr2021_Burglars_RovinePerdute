@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <routes>
-		<route team="Tonatiuh" cost="110438.28850346863" cities="146">
+		<route team="Tonatiuh" cost="110438,29" cities="146">
 			<city id="0" name="campo base"/>
 			<city id="48" name="Qu'umarkaj"/>
 			<city id="120" name="Rio"/>
@@ -149,7 +149,7 @@
 			<city id="9999" name="Rovine Perdute"/>
 		</route>
 
-		<route team="Metztli" cost="10447.0" cities="153">
+		<route team="Metztli" cost="10447,00" cities="153">
 			<city id="0" name="campo base"/>
 			<city id="16" name="Cusco"/>
 			<city id="17" name="Verolanuova"/>
